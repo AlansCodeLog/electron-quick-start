@@ -13,10 +13,15 @@ function append() {
 	webview.setAttribute('preload', "./preload.js")
 	place = document.querySelector(".plugins")
 	place.appendChild(webview)
+	// webview = document.querySelector("webview")
+	webview.addEventListener('dom-ready', () => {
+		webview.getWebContents().openDevTools()
+	});
 }
 
 function remove_elements() {
-	document.querySelectorAll(type).forEach(el=> {
+	document.querySelectorAll(type).forEach(el => {
+		el.src = "about:blank"
 		el.remove()
 	})
 }
